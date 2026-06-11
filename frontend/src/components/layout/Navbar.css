@@ -1,0 +1,79 @@
+/* =========================
+   NAVBAR
+========================= */
+.custom-navbar {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  height: var(--navbar-height);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.navbar-inner {
+  max-width: 1300px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.logo-text {
+  color: var(--text-main);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin: 0;
+  line-height: 1;
+}
+
+.app-tagline {
+  color: var(--text-soft);
+  font-size: 11px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  margin: 0;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-btn {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  text-decoration: none;
+  padding: 7px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-block;
+  transition: 0.15s ease;
+}
+
+.home-btn:hover {
+  background-color: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary);
+}

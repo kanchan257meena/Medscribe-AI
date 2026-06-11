@@ -1,0 +1,23 @@
+.patient-layout {
+  height: calc(
+    100vh - var(--navbar-height) - var(--footer-height)
+  );
+
+  display: grid;
+
+  grid-template-columns: 420px 1fr;
+
+  gap: 24px;
+
+  padding: 20px;
+}
+
+.patient-left {
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.patient-right {
+  overflow: hidden;
+  min-height: 0;
+}
