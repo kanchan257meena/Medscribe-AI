@@ -1,32 +1,31 @@
 const extractSymptoms = (transcript) => {
-
   const symptoms = [];
 
   const text = transcript.toLowerCase();
 
-  if (text.includes("fever")) {
-    symptoms.push("fever");
-  }
+  const symptomKeywords = [
+    "fever",
+    "cough",
+    "cold",
+    "headache",
+    "body pain",
+    "vomiting",
+    "nausea",
+    "diarrhea",
+    "stomach pain",
+    "back pain",
+    "chest pain",
+    "shortness of breath",
+    "fatigue",
+    "dizziness",
+    "allergy",
+  ];
 
-  if (text.includes("cough")) {
-    symptoms.push("cough");
-  }
-
-  if (text.includes("headache")) {
-    symptoms.push("headache");
-  }
-
-  if (text.includes("cold")) {
-    symptoms.push("cold");
-  }
-
-  if (text.includes("body pain")) {
-    symptoms.push("body pain");
-  }
-
-  if (text.includes("vomiting")) {
-    symptoms.push("vomiting");
-  }
+  symptomKeywords.forEach((symptom) => {
+    if (text.includes(symptom)) {
+      symptoms.push(symptom);
+    }
+  });
 
   return symptoms;
 };
