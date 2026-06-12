@@ -15,6 +15,33 @@ function AddVisitForm({ patientId, fetchPatient }) {
   // to controll errors
   const [error, setError] = useState("");
 
+  // Listening indicator
+  const [isListening, setIsListening] = useState(false);
+
+  // speech to text
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  const recognition = new SpeechRecognition(); //objet of SR which a window class for s to t
+  recognition.continuous = false; //stop after transcript done
+  recognition.lang = "en-US";
+  recognition.interimResults = false; // to prevent intermediate result
+
+  const startListening = () => {
+    setIsListening(true);
+    recognition.start();
+  };
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    setVisitData((prev) => ({
+      ...prev,
+      transcript: prev.transcript + " " + transcript,
+    }));
+  };
+  recognition.onend = () => {
+    setIsListening(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!visitData.transcript.trim()) {
@@ -53,6 +80,14 @@ function AddVisitForm({ patientId, fetchPatient }) {
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Doctor Transcript</label>
+
+          <button
+            type="button"
+            className="custom-btn mb-3"
+            onClick={startListening}
+          >
+            {isListening ? "🔴 Listening..." : "🎤 Start Recording"}
+          </button>
 
           <textarea
             className="form-control"
