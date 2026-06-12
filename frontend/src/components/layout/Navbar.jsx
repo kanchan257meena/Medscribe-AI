@@ -1,17 +1,18 @@
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { useLocation } from "react-router-dom";
 
 
 function Navbar() {
+  const location = useLocation();
+const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
-const handleLogout = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
 
-  localStorage.removeItem("token");
-
-  navigate("/login");
-
-};
+    navigate("/login");
+  };
   return (
     <nav className="custom-navbar">
       <div className="navbar-inner">
@@ -26,13 +27,15 @@ const handleLogout = () => {
           <Link to="/" className="home-btn">
             Home
           </Link>
-          {/* <button onClick={handleLogout}>Logout</button> */}
-          <button className="home-btn" onClick={handleLogout}>
-            Logout
-          </button>
-          {/* <Link to="/login" className="home-btn">
-            Login
-          </Link> */}
+          {token ? (
+            <button className="home-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" className="home-btn">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
